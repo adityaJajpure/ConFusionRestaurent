@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="conApp">
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head
+         content must come *after* these tags -->
+    <title>Ristorante Con Fusion: Menu</title>
+        <!-- Bootstrap -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+    <link href="styles/mystyles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="row row-content" ng-controller="menuController as menuCtrl">
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li ng-class="{active:menuCtrl.isSelected(1)}" role=presentation>
+                        <a ng-click="menuCtrl.select(1)" aria-controls="all menu" role="tab">The Menu</a>
+                    </li>
+                    <li ng-class="{active : menuCtrl.isSelected(2)}" role=presentation>
+                        <a ng-click="menuCtrl.select(2)" aria-controls="appetizer" role="tab">Appetizer</a>
+                    </li>
+                    <li ng-class="{active : menuCtrl.isSelected(3)}" role=presentation>
+                        <a ng-click="menuCtrl.select(3)" aria-controls="mains" role="tab">Mains</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                <ul class="media-list tab-pane fade in active">
+                    <li class="media" ng-repeat="dish in menuCtrl.dishes | filter:menuCtrl.filText" >
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <img class="media-object img-thumbnail" ng-src={{dish.image}}>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">{{dish.name}}
+                            <span class="label label-danger label-xs">{{dish.label}}</span>
+                            <span class="badge">{{dish.price|currency}}</span>
+                            </h2>
+                            <p>{{dish.description}}</p>
+                        </div> 
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module('conApp',[]);
+        app.controller('menuController',function(){
+            
+        this.tab = 1;
+        this.filtext=''    
+        var dishes = [{
+                          name : 'Zucchipakoda',
+                          image : 'images/zucchipakoda.png',
+                          category : 'mains',
+                          label : 'HOT',
+                          price : '10.11' ,
+                          description : 'A unique dish created by adi'
+                        },
+                        {
+                            name : 'Uthappizza',
+                            image : 'images/uthapizza.png',
+                            category : 'appetizer',
+                            label : 'HOT',
+                            price : '5.51',
+                            description : 'A dish with combination of 2 dishes '
+                        },
+                        {
+                            name : 'Vadonut',
+                            image : 'images/vadonut.png',
+                            category : 'appetizer',
+                            label : 'HOT',
+                            price : '11.11' ,
+                            description : 'A unique dish created by adi specially for adiv04'
+                        },
+                        {
+                            name : 'Buffet',
+                            image : 'images/buffet.png',
+                            category : 'mains',
+                            label : 'HOT',
+                            price : '50.51',
+                            description : 'A dish with combination of 8 dishes '
+                        },
+                        {
+                            name : 'Elaicheesecake',
+                            image : 'images/elaicheesecake.png',
+                            category : 'mains',
+                            label : 'HOT',
+                            price : '5.55',
+                            description : 'A unique dish with no combinations :-0'
+                            
+                        }];
+            this.dishes = dishes;
+            this.select = function(setTab){
+                this.tab = setTab; 
+                if(setTab===2) this.filText='appetizer';
+                else if(setTab===3) this.filText='mains';
+                else this.filText="";
+            }
+            this.isSelected = function(checkTab){
+                return (this.tab === checkTab);
+            }
+         });
+    </script>
+    
+</body>
+</html>

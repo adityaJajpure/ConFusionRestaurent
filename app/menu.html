@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head
+         content must come *after* these tags -->
+    <title>Ristorante Con Fusion: Menu</title>
+        <!-- Bootstrap -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+    <link href="styles/mystyles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="row row-content" ng-init="
+                                              dishes=
+                                              [{
+                                                name : 'Zucchipakoda',
+                                                image : 'images/zucchipakoda.png',
+                                                category : 'mains',
+                                                label : 'HOT',
+                                                price : '10.11' ,
+                                                description : 'A unique dish created by adi ',
+                                                comment : ''
+                                              },
+                                              {
+                                                name : 'Uthappizza',
+                                                image : 'images/uthapizza.png',
+                                                category : 'mains',
+                                                label : 'HOT',
+                                                price : '5.51',
+                                                description : 'A dish with combination of 2 dishes ',
+                                                comment : ''
+                                              },
+                                              {
+                                                name : 'Vadonut',
+                                                image : 'images/vadonut.png',
+                                                category : 'mains',
+                                                label : 'HOT',
+                                                price : '11.11' ,
+                                                description : 'A unique dish created by adi specially for adiv04',
+                                                comment : ''
+                                              },
+                                              {
+                                                name : 'Buffet',
+                                                image : 'images/buffet.png',
+                                                category : 'mains',
+                                                label : 'HOT',
+                                                price : '50.51',
+                                                description : 'A dish with combination of 8 dishes ',
+                                                comment : ''
+                                              },
+                                              {
+                                                name : 'Elaicheesecake',
+                                                image : 'images/elaicheesecake.png',
+                                                category : 'mains',
+                                                label : 'HOT',
+                                                price : '5.55',
+                                                description : 'A dish with combination of 8 dishes ',
+                                                comment : ''
+                                              }]">
+            <div class="col-xs-12">
+                <ul class="media-list">
+                    <li class="media" ng-repeat="dish in dishes">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <img class="media-object img-thumbnail" ng-src={{dish.image}}>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">{{dish.name}}
+                            <span class="label label-danger label-xs">{{dish.label}}</span>
+                            <span class="badge">{{dish.price|currency}}</span>
+                            </h2>
+                            <p>{{dish.description}}</p>
+                            <p>Comment : {{dish.comment}} </p>
+                            <p>Enter Your Comments : <input type="text" ng-model = "dish.comment"></p>
+                        </div> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="../bower_components/angular/angular.min.js"></script>
+</body>
+</html>
